@@ -8,6 +8,11 @@
 
 
 .table-container {
-    min-width: 900px;
+    overflow-x: scroll;
+    width: 100%;
     scroll-behavior: smooth;
+    .table-width {
+        min-width: 1100px;
+        scroll-behavior: smooth;
+    }
 }

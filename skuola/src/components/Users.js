@@ -49,10 +49,12 @@ function Users() {
     return (
         <div className="Users">
             {users ? (
-                <div class="col-12 table-container">
+                <div className="col-12 table-container">
                     <span>{users.length} { users.length > 1 ? 'utenti' : 'utente' }</span>
                     <br/>
+                    <div className="table-width">
                     <BootstrapTable keyField='id' data={users} columns={columns} />
+                    </div>
                 </div>
             ) : (
                 <div className="row">
