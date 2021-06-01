@@ -5,12 +5,12 @@ import Users from './components/Users';
 function App() {
   return (
     <div className="App">
-      <h1>Utenti</h1>
-      <Header />
       <div className="container">
+        <h1>Utenti</h1>
+        <Header />
         <Users />
       </div>
-    </div>
+    </div >
   );
 }
 

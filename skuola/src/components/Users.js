@@ -2,6 +2,7 @@ import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 function Users() {
+    console.log(localStorage.getItem('document'));
     // utenti 
     const users = [{
         id: '1112',
@@ -39,7 +40,7 @@ function Users() {
     // colonne della tabella
     const columns = [{
         dataField: 'id',
-        text: 'Product ID',
+        text: 'ID',
         sort: true
     }, {
         dataField: 'nome',
