@@ -5,14 +5,7 @@ export class Form extends Component {
     documentData;
     constructor(props) {
         super(props);
-        this.state = {
-            users: [{
-                nome: '',
-                cognome: '',
-                email: '',
-                dataNascita: ''
-            }]
-        };
+        this.state = {};
     }
 
     inputCheck = (e) => {
@@ -21,31 +14,56 @@ export class Form extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    submitCheck = () => {
-        if (!this.state.nome || !this.state.cognome) {
-            alert("È vuoto")
-        } else if (!this.state.email.match(/@./g)) {
-            alert("Formato email errato.")
-        } else {
-            const users = [];
-            this.setState(prevState => ({
-                arr: [...users, ...newArr]
-            }));
+    isDate18orMoreYearsOld(day, month, year) {
+        return new Date(year + 18, month - 1, day) <= new Date();
+    }
 
-            localStorage.setItem('', JSON.stringify(this.state));
+    submitCheck = (e) => {
+
+        const users = new Array;
+        const usersStorage = JSON.parse(localStorage.getItem('users'));
+        var checkEmail = '';
+        if (usersStorage) {
+            usersStorage.map((data) => (
+                users.push(data)
+            ));
+            checkEmail = users.filter((e) => e.email === this.state.email);
+        }
+
+        const nascita = this.state.giorno + '/' + this.state.mese + '/' + this.state.anno;
+
+        var from = nascita.split("/");
+        var birthdateTimeStamp = new Date(from[2], from[1] - 1, from[0]);
+        var cur = new Date();
+        var diff = cur - birthdateTimeStamp;
+        // This is the difference in milliseconds
+        var currentAge = Math.floor(diff / 31557600000);
+        // Divide by 1000*60*60*24*365.25
+
+        if (!this.state.nome || !this.state.cognome) {
+            alert("È vuoto");
+            e.preventDefault();
+        } else if (!this.state.email.match(/@./g)) {
+            alert("Formato email errato.");
+            e.preventDefault();
+        } else if (checkEmail.length != 0) {
+            alert('l\'email esiste già');
+            e.preventDefault();
+        } else if (currentAge < 18) {
+            alert('Non hai 18 anni');
+            e.preventDefault();
+        } else {
+            users.push({
+                id: users.length + 1,
+                nome: this.state.nome,
+                cognome: this.state.cognome,
+                dataNascita: nascita,
+                email: this.state.email
+            });
+            localStorage.setItem('users', JSON.stringify(users));
         }
     }
 
-
-
-    resetForm = () => {
-        this.setState({
-            nome: '',
-            cognome: '',
-            email: '',
-            dataNascita: ''
-        })
-    }
     render() {
         // dynamic GG/MM/AAAA select
         const anno = (new Date()).getFullYear();
