@@ -32,6 +32,8 @@ export class Form extends Component {
 
         const nascita = this.state.giorno + '/' + this.state.mese + '/' + this.state.anno;
 
+        // get age to check if they're 18 
+
         var from = nascita.split("/");
         var birthdateTimeStamp = new Date(from[2], from[1] - 1, from[0]);
         var cur = new Date();
@@ -39,6 +41,9 @@ export class Form extends Component {
         // This is the difference in milliseconds
         var currentAge = Math.floor(diff / 31557600000);
         // Divide by 1000*60*60*24*365.25
+
+
+        // form validation
 
         if (!this.state.nome || !this.state.cognome) {
             alert("È vuoto");
@@ -65,7 +70,9 @@ export class Form extends Component {
     }
 
     render() {
+
         // dynamic GG/MM/AAAA select
+
         const anno = (new Date()).getFullYear();
         const anni = Array.from(new Array(90), (val, index) => anno - index);
         const giorni = Array.from(new Array(31), (val, index) => index + 1);
