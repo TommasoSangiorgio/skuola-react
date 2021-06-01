@@ -10,8 +10,7 @@ function Header() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    console.log(localStorage);
-
+    //localStorage.clear();
     return (
         <div className="Header">
             <header className="App-header">
