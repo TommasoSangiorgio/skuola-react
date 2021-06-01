@@ -1,5 +1,6 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
+import { Button } from 'react-bootstrap';
 
 function Users() {
     // utenti 
@@ -27,6 +28,7 @@ function Users() {
     {
         dataField: 'dataNascita',
         text: 'Data di nascita',
+        // this function sorts correctly by dates
         sortFunc: (a, b, order) => {
             if (order === "asc") {
                 return a.localeCompare(
@@ -49,7 +51,11 @@ function Users() {
             {users ? (
                 <BootstrapTable keyField='id' data={users} columns={columns} />
             ) : (
-                < div>Aggiungi un utente</div>
+                <div className="row">
+                    <div className="col-12 text-center no-users">
+                        Aggiungi un utente.
+                    </div>
+                </div>
             )}
 
         </div >

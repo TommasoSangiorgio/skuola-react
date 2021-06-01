@@ -5,10 +5,13 @@ import Users from './components/Users';
 function App() {
   return (
     <div className="App">
-      <div className="container">
-        <h1>Utenti</h1>
+      <div className="container cont-top">
         <Header />
-        <Users />
+        <div className="row">
+          <div className="col-12">
+            <Users />
+          </div>
+        </div>
       </div>
     </div >
   );

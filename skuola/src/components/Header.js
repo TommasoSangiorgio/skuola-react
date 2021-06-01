@@ -15,21 +15,29 @@ function Header() {
         <div className="Header">
             <header className="App-header">
                 <div className="container">
-                    <Button onClick={handleShow}>Aggiungi utente +</Button>
-                    <Modal show={show} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Aggiungi un utente</Modal.Title>
-                        </Modal.Header>
+                    <div className="row">
+                    <div className="col-9" style={{ padding: "0px" }}>
+                        <h1>Gestione Utenti</h1>
+                    </div>
+                    <div className="col-3">
+                        <div className="row">
+                            <Button onClick={handleShow}>Aggiungi utente +</Button>
+                            <Modal show={show} onHide={handleClose}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Aggiungi un utente</Modal.Title>
+                                </Modal.Header>
 
-                        <Modal.Body>
-                            <Form />
-                        </Modal.Body>
+                                <Modal.Body>
+                                    <Form />
+                                </Modal.Body>
 
-                        <Modal.Footer>
-                            <Button onClick={handleClose} variant="secondary">Annulla</Button>
-                        </Modal.Footer>
-
-                    </Modal>
+                                <Modal.Footer>
+                                    <Button onClick={handleClose} variant="secondary">Annulla</Button>
+                                </Modal.Footer>
+                            </Modal>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </header>
         </div >
