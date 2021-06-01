@@ -2,40 +2,8 @@ import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 function Users() {
-    console.log(localStorage.getItem('document'));
     // utenti 
-    const users = [{
-        id: '1112',
-        nome: 'Paolo',
-        cognome: 'Rossi',
-        email: 'Paolo@it.com',
-        dataNascita: '21/06/1999'
-
-    },
-    {
-        id: '4333',
-        nome: 'Fabiola',
-        cognome: 'Carini',
-        email: 'fabiola@test.com',
-        dataNascita: '22/06/1999'
-
-    },
-    {
-        id: '1344',
-        nome: 'Anna',
-        cognome: 'Verdi',
-        email: 'Anna@it.com',
-        dataNascita: '23/12/1995'
-
-    },
-    {
-        id: '1322',
-        nome: 'Giovani',
-        cognome: 'Antoni',
-        email: 'antoni@it.com',
-        dataNascita: '28/10/1943'
-
-    }];
+    const users = JSON.parse(localStorage.getItem('users'));
 
     // colonne della tabella
     const columns = [{
@@ -78,8 +46,13 @@ function Users() {
     }];
     return (
         <div className="Users">
-            <BootstrapTable keyField='id' data={users} columns={columns} />
-        </div>
+            {users ? (
+                <BootstrapTable keyField='id' data={users} columns={columns} />
+            ) : (
+                < div>Aggiungi un utente</div>
+            )}
+
+        </div >
     );
 }
 
